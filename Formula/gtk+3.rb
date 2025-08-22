@@ -19,7 +19,7 @@ class Gtkx3 < Formula
   depends_on "docbook" => :build
   depends_on "docbook-xsl" => :build
   depends_on "gobject-introspection" => :build
-  depends_on "meson" => :build
+#  depends_on "meson" => :build
   depends_on "ninja" => :build
   depends_on "pkg-config" => :build
   depends_on "atk"
@@ -31,24 +31,24 @@ class Gtkx3 < Formula
   depends_on "pango"
 
   uses_from_macos "libxslt" => :build # for xsltproc
-
-  def install
-    args = std_meson_args + %w[
-      -Dx11_backend=false
-      -Dquartz_backend=true
-      -Dgtk_doc=false
-      -Dman=true
-      -Dintrospection=true
-    ]
+#
+#  def install
+#    args = std_meson_args + %w[
+#      -Dx11_backend=false
+#      -Dquartz_backend=true
+#      -Dgtk_doc=false
+#      -Dman=true
+#      -Dintrospection=true
+#    ]
 
     # ensure that we don't run the meson post install script
-    ENV["DESTDIR"] = "/"
+#    ENV["DESTDIR"] = "/"
 
     # Find our docbook catalog
     ENV["XML_CATALOG_FILES"] = "#{etc}/xml/catalog"
 
     mkdir "build" do
-      system "meson", *args, ".."
+#      system "meson", *args, ".."
       system "ninja", "-v"
       system "ninja", "install", "-v"
     end
