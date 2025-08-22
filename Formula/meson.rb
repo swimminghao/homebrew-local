@@ -1,47 +1,34 @@
 class Meson < Formula
+  include Language::Python::Virtualenv
+
   desc "Fast and user friendly build system"
   homepage "https://mesonbuild.com/"
-  url "https://github.com/mesonbuild/meson/releases/download/1.2.1/meson-1.2.1.tar.gz"
-  sha256 "b1db3a153087549497ee52b1c938d2134e0338214fe14f7efd16fecd57b639f5"
+  url "https://github.com/mesonbuild/meson/releases/download/0.62.0/meson-0.62.0.tar.gz"
+  sha256 "06f8c1cfa51bfdb533c82623ffa524cacdbea02ace6d709145e33aabdad6adcb"
   license "Apache-2.0"
   head "https://github.com/mesonbuild/meson.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "9406d5874fbda9762088d746cc03f858530c68af2685d36d8e3ab3a125f5e274"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "830d3c82402a695a246c92500f6a07fafc39e8382b1d8d4c133454e39a0b90ff"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "a10859243b1637c4aa49ace9b8c403198855565c15f655c3b9b7835b4d2f05b6"
+    sha256 cellar: :any_skip_relocation, monterey:       "a7630ba31e6fa29ee38900eb363b3969197cc6f35504d1fdfb06904f034aff9a"
+    sha256 cellar: :any_skip_relocation, big_sur:        "33a4c7a19baff6923d73296481feee3612b8b947da2756152d3800a5d65d4686"
+    sha256 cellar: :any_skip_relocation, catalina:       "070b11813bca11380b90b942aa55f5bd641a13745a63da530827381dd8dca462"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "bd1a7dd039cd225448769fc2dc81b0b7ed2b5da61b76fdce95cb1a20e6e35ec6"
   end
 
   depends_on "ninja"
-  depends_on "python@3.11"
+  depends_on "python@3.10"
 
   def install
-    python = "python3.11"
-    system python, *Language::Python.setup_install_args(prefix, python), "--install-data=#{prefix}"
-
+    virtualenv_install_with_resources
     bash_completion.install "data/shell-completions/bash/meson"
     zsh_completion.install "data/shell-completions/zsh/_meson"
-    vim_plugin_dir = buildpath/"data/syntax-highlighting/vim"
-    (share/"vim/vimfiles").install %w[ftdetect ftplugin indent syntax].map { |dir| vim_plugin_dir/dir }
-
-    # Make the bottles uniform. This also ensures meson checks `HOMEBREW_PREFIX`
-    # for fulfilling dependencies rather than just `/usr/local`.
-    mesonbuild = prefix/Language::Python.site_packages(python)/"mesonbuild"
-    inreplace_files = %w[
-      coredata.py
-      dependencies/boost.py
-      dependencies/cuda.py
-      dependencies/qt.py
-      scripts/python_info.py
-      utils/universal.py
-    ].map { |f| mesonbuild/f }
-    inreplace_files << (bash_completion/"meson")
-
-    # Passing `build.stable?` ensures a failed `inreplace` won't fail HEAD installs.
-    inreplace inreplace_files, "/usr/local", HOMEBREW_PREFIX, build.stable?
   end
 
   test do
     (testpath/"helloworld.c").write <<~EOS
-      #include <stdio.h>
       main() {
         puts("hi");
         return 0;
@@ -52,10 +39,9 @@ class Meson < Formula
       executable('hello', 'helloworld.c')
     EOS
 
-    system bin/"meson", "setup", "build"
-    assert_predicate testpath/"build/build.ninja", :exist?
-
-    system bin/"meson", "compile", "-C", "build", "--verbose"
-    assert_equal "hi", shell_output("build/hello").chomp
+    mkdir testpath/"build" do
+      system bin/"meson", ".."
+      assert_predicate testpath/"build/build.ninja", :exist?
+    end
   end
 end
