@@ -1,6 +1,7 @@
 class Glib < Formula
   include Language::Python::Shebang
 
+
   desc "Core application library for C"
   homepage "https://developer.gnome.org/glib/"
   url "https://download.gnome.org/sources/glib/2.72/glib-2.72.2.tar.xz"
