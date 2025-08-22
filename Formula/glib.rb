@@ -1,20 +1,17 @@
 class Glib < Formula
   include Language::Python::Shebang
 
-
   desc "Core application library for C"
   homepage "https://developer.gnome.org/glib/"
-  url "https://download.gnome.org/sources/glib/2.72/glib-2.72.2.tar.xz"
-  sha256 "78d599a133dba7fe2036dfa8db8fb6131ab9642783fc9578b07a20995252d2de"
+  url "https://download.gnome.org/sources/glib/2.68/glib-2.68.1.tar.xz"
+  sha256 "241654b96bd36b88aaa12814efc4843b578e55d47440103727959ac346944333"
   license "LGPL-2.1-or-later"
 
   bottle do
-    sha256 arm64_monterey: "828e2380fa392e139222b73fad0b74aa3b3d650258e1f70113140a47904d148a"
-    sha256 arm64_big_sur:  "b739dbbe988f937c3ca9a11177d02eb114804f0a7ffe82110d2a7671b8db0c51"
-    sha256 monterey:       "9886303982a6615b573dea449ecdd61a6523b87b5eb7ecaacf141b83009788de"
-    sha256 big_sur:        "92937c6c142a28da13da179e97961ef533073e6fe59934b967f451638a361815"
-    sha256 catalina:       "eb8284467e41f0fb237370830ee6dfb251afd126f711716330a6a101e72a6cb9"
-    sha256 x86_64_linux:   "a5290634e8cf6ee5425f530d7868a83316c17214feae1307cde7d8706e8c84e8"
+    sha256 arm64_big_sur: "d373812a588fa829a3f49d4a1eb69fa8e9181c9ef097275ad28db586bf23e308"
+    sha256 big_sur:       "7d671e3104d1a3e8d620ef99b4a1c9b237362e60e87362ccd4121b1634289f1e"
+    sha256 catalina:      "32befec4ce3615c729c72fbb9c3d791e8263cb1412931ed78e8db07251185fb9"
+    sha256 mojave:        "7918fa4176001769dc53a6b14431aa9ffce8ebccf1a3201e1d25024182409339"
   end
 
   depends_on "meson" => :build
@@ -53,7 +50,7 @@ class Glib < Formula
       system "meson", *args, ".."
       system "ninja", "-v"
       system "ninja", "install", "-v"
-      rewrite_shebang detected_python_shebang, *bin.children
+      bin.find { |f| rewrite_shebang detected_python_shebang, f }
     end
 
     # ensure giomoduledir contains prefix, as this pkgconfig variable will be
@@ -63,7 +60,7 @@ class Glib < Formula
               "giomoduledir=#{HOMEBREW_PREFIX}/lib/gio/modules",
               "giomoduledir=${libdir}/gio/modules"
 
-    if OS.mac?
+    on_macos do
       # `pkg-config --libs glib-2.0` includes -lintl, and gettext itself does not
       # have a pkgconfig file, so we add gettext lib and include paths here.
       gettext = Formula["gettext"].opt_prefix
