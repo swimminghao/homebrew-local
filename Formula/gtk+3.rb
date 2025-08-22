@@ -32,7 +32,7 @@ class Gtkx3 < Formula
 
   uses_from_macos "libxslt" => :build # for xsltproc
 #
-#  def install
+  def install
 #    args = std_meson_args + %w[
 #      -Dx11_backend=false
 #      -Dquartz_backend=true
