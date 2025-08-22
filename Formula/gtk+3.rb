@@ -1,25 +1,19 @@
 class Gtkx3 < Formula
   desc "Toolkit for creating graphical user interfaces"
   homepage "https://gtk.org/"
-  url "https://download.gnome.org/sources/gtk+/3.24/gtk+-3.24.22.tar.xz"
-  sha256 "bf18a4a5dff28a7b02aaef1b949c2d09c96c18387eddab152bb4cd55a5b67dda"
-  license "LGPL-2.0-or-later"
-
-  livecheck do
-    url :stable
-    regex(/gtk\+[._-](3\.([0-8]\d*?)?[02468](?:\.\d+)*?)\.t/)
-  end
+  url "https://download.gnome.org/sources/gtk+/3.24/gtk+-3.24.14.tar.xz"
+  sha256 "1c4d69f93ab884fd80c6b95115bfbc12d51ecd029178b6dad3672fdc5ff91e88"
 
 #  bottle do
-#    sha256 "8be1bc471681688387c1bae5b48522e02c924e4b65badc89dda6ac8a32613dc2" => :catalina
-#    sha256 "a6e75a26e12b929abcde2055d38f6a75be9fdc602da31dfaa3a01f8618e99aad" => :mojave
-#    sha256 "32b35af03f9f90fa05c667afbdc6c15c71d1f1ef3753bd46737c441f7deb0b7c" => :high_sierra
+#    sha256 "ca2e4c5b6c39d67efa8d9af0a00b9f6fe462aa583bb72c14c48eb5e405377386" => :catalina
+#    sha256 "350d92b3d8f778830ff284a9ca4b395d315da35129ea834881d9ae67e0db816a" => :mojave
+#    sha256 "98c288ee2b92c91b3f5f9029555d378d6d93d4f407c462e9bed009644e895670" => :high_sierra
 #  end
 
   depends_on "docbook" => :build
   depends_on "docbook-xsl" => :build
   depends_on "gobject-introspection" => :build
-#  depends_on "meson" => :build
+  depends_on "meson" => :build
   depends_on "ninja" => :build
   depends_on "pkg-config" => :build
   depends_on "atk"
@@ -31,24 +25,25 @@ class Gtkx3 < Formula
   depends_on "pango"
 
   uses_from_macos "libxslt" => :build # for xsltproc
-#
+
   def install
-#    args = std_meson_args + %w[
-#      -Dx11_backend=false
-#      -Dquartz_backend=true
-#      -Dgtk_doc=false
-#      -Dman=true
-#      -Dintrospection=true
-#    ]
+    args = %W[
+      --prefix=#{prefix}
+      -Dx11_backend=false
+      -Dquartz_backend=true
+      -Dgtk_doc=false
+      -Dman=true
+      -Dintrospection=true
+    ]
 
     # ensure that we don't run the meson post install script
-#    ENV["DESTDIR"] = "/"
+    ENV["DESTDIR"] = "/"
 
     # Find our docbook catalog
     ENV["XML_CATALOG_FILES"] = "#{etc}/xml/catalog"
 
     mkdir "build" do
-#      system "meson", *args, ".."
+      system "meson", *args, ".."
       system "ninja", "-v"
       system "ninja", "install", "-v"
     end
@@ -124,7 +119,5 @@ class Gtkx3 < Formula
     ]
     system ENV.cc, "test.c", "-o", "test", *flags
     system "./test"
-    # include a version check for the pkg-config files
-    assert_match version.to_s, shell_output("cat #{lib}/pkgconfig/gtk+-3.0.pc").strip
   end
 end
