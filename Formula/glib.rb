@@ -7,12 +7,12 @@ class Glib < Formula
   sha256 "241654b96bd36b88aaa12814efc4843b578e55d47440103727959ac346944333"
   license "LGPL-2.1-or-later"
 
-  bottle do
-    sha256 arm64_big_sur: "d373812a588fa829a3f49d4a1eb69fa8e9181c9ef097275ad28db586bf23e308"
-    sha256 big_sur:       "7d671e3104d1a3e8d620ef99b4a1c9b237362e60e87362ccd4121b1634289f1e"
-    sha256 catalina:      "32befec4ce3615c729c72fbb9c3d791e8263cb1412931ed78e8db07251185fb9"
-    sha256 mojave:        "7918fa4176001769dc53a6b14431aa9ffce8ebccf1a3201e1d25024182409339"
-  end
+#  bottle do
+#    sha256 arm64_big_sur: "d373812a588fa829a3f49d4a1eb69fa8e9181c9ef097275ad28db586bf23e308"
+#    sha256 big_sur:       "7d671e3104d1a3e8d620ef99b4a1c9b237362e60e87362ccd4121b1634289f1e"
+#    sha256 catalina:      "32befec4ce3615c729c72fbb9c3d791e8263cb1412931ed78e8db07251185fb9"
+#    sha256 mojave:        "7918fa4176001769dc53a6b14431aa9ffce8ebccf1a3201e1d25024182409339"
+#  end
 
   depends_on "meson" => :build
   depends_on "ninja" => :build
