@@ -11,12 +11,12 @@ class Gtkx3 < Formula
 #    sha256 "15c99a778550e443a9d6a8f8bce42c7575b4d68ebdeb17fe5476fed20aea821c" => :high_sierra
 #  end
 
-  depends_on "docbook" => :build
-  depends_on "docbook-xsl" => :build
-  depends_on "gobject-introspection" => :build
-  depends_on "meson" => :build
-  depends_on "ninja" => :build
-  depends_on "pkg-config" => :build
+#  depends_on "docbook" => :build
+#  depends_on "docbook-xsl" => :build
+#  depends_on "gobject-introspection" => :build
+#  depends_on "meson" => :build
+#  depends_on "ninja" => :build
+#  depends_on "pkg-config" => :build
   depends_on "atk"
   depends_on "gdk-pixbuf"
   depends_on "glib"
