@@ -7,12 +7,12 @@ class GitGui < Formula
   license "GPL-2.0-only"
   head "https://github.com/git/git.git", shallow: false
 
-  bottle do
-    sha256 cellar: :any_skip_relocation, arm64_big_sur: "4a3bd222c3edf48528d77e7807d3b4723abd8ff3243361aafe964212c813ade0"
-    sha256 cellar: :any_skip_relocation, big_sur:       "0d8803003a68cff4fe56dc8244b491af4d26c9ac9df76136fa826462925aeed7"
-    sha256 cellar: :any_skip_relocation, catalina:      "60cb252e34234b9749fa9c757ad9b92a02ccd163896e36d90e99892d3d9407b0"
-    sha256 cellar: :any_skip_relocation, mojave:        "e82720dcc0caeee5c7f8569d446969fe0a4cfd918cfc5c8a994259b32817cd26"
-  end
+#  bottle do
+#    sha256 cellar: :any_skip_relocation, arm64_big_sur: "4a3bd222c3edf48528d77e7807d3b4723abd8ff3243361aafe964212c813ade0"
+#    sha256 cellar: :any_skip_relocation, big_sur:       "0d8803003a68cff4fe56dc8244b491af4d26c9ac9df76136fa826462925aeed7"
+#    sha256 cellar: :any_skip_relocation, catalina:      "60cb252e34234b9749fa9c757ad9b92a02ccd163896e36d90e99892d3d9407b0"
+#    sha256 cellar: :any_skip_relocation, mojave:        "e82720dcc0caeee5c7f8569d446969fe0a4cfd918cfc5c8a994259b32817cd26"
+#  end
 
   depends_on "tcl-tk"
 
