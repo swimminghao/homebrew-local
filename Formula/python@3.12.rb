@@ -10,15 +10,15 @@ class PythonAT312 < Formula
     regex(%r{href=.*?v?(3\.12(?:\.\d+)*)/?["' >]}i)
   end
 
-#  bottle do
-#    sha256 arm64_sonoma:   "b0ff9819a9f471ac30796037098acdc318883b1a8fdfb4f9b9926590eace41dd"
-#    sha256 arm64_ventura:  "46bfedee260602e564ba4da5551a676c7c4c5605357c79183f2da0855f81fac5"
-#    sha256 arm64_monterey: "a8cbb6621923a75a61511d6478ae231ed4f56f703b9f244bfb9d5d6ec45d5b14"
-#    sha256 sonoma:         "9f9356133056b279b4dc874b44ccade6690f07d8dcbe8bc387b2158f9218a78e"
-#    sha256 ventura:        "af7af812d9b66eddb1164ff90a0851da6658516b04746abee8c44d953dc8bc8e"
-#    sha256 monterey:       "26ab776eaefe245d630a22bd358c7422af2ae65afe6623f7ec4b9c64fc986b84"
-#    sha256 x86_64_linux:   "44f7dd6260f4e4d3e802e55b8226e498c0c9949ac48eb0ba7c04b13a179ce9f1"
-#  end
+  bottle do
+    sha256 arm64_sonoma:   "b0ff9819a9f471ac30796037098acdc318883b1a8fdfb4f9b9926590eace41dd"
+    sha256 arm64_ventura:  "46bfedee260602e564ba4da5551a676c7c4c5605357c79183f2da0855f81fac5"
+    sha256 arm64_monterey: "a8cbb6621923a75a61511d6478ae231ed4f56f703b9f244bfb9d5d6ec45d5b14"
+    sha256 sonoma:         "9f9356133056b279b4dc874b44ccade6690f07d8dcbe8bc387b2158f9218a78e"
+    sha256 ventura:        "af7af812d9b66eddb1164ff90a0851da6658516b04746abee8c44d953dc8bc8e"
+    sha256 monterey:       "26ab776eaefe245d630a22bd358c7422af2ae65afe6623f7ec4b9c64fc986b84"
+    sha256 x86_64_linux:   "44f7dd6260f4e4d3e802e55b8226e498c0c9949ac48eb0ba7c04b13a179ce9f1"
+  end
 
   # setuptools remembers the build flags python is built with and uses them to
   # build packages later. Xcode-only systems need different flags.
