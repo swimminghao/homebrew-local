@@ -14,10 +14,10 @@ class Glib < Formula
 #    sha256 mojave:        "7918fa4176001769dc53a6b14431aa9ffce8ebccf1a3201e1d25024182409339"
 #  end
 
-  depends_on "meson" => :build
-  depends_on "ninja" => :build
-  depends_on "pkg-config" => :build
-  depends_on "gettext"
+#  depends_on "meson" => :build
+#  depends_on "ninja" => :build
+#  depends_on "pkg-config" => :build
+#  depends_on "gettext"
   depends_on "libffi"
   depends_on "pcre"
   depends_on "python@3.9"
