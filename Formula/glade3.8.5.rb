@@ -5,11 +5,11 @@ class Glade < Formula
   sha256 "58a5f6e4df4028230ddecc74c564808b7ec4471b1925058e29304f778b6b2735"
   revision 1
 
-  bottle do
-    sha256 "5c910f1666f6e261369aa166bea2e48e5b03856928900448c2c577ec4f04eca2" => :el_capitan
-    sha256 "8f0c1d019b71e76381c0f4437395f1e1eb3da24e8ef1b16051535209aeeaf5d7" => :yosemite
-    sha256 "f4eae837311b7aadfff8a27720ce2bbc71871e9b095d31e90d4b833ec725205f" => :mavericks
-  end
+#  bottle do
+#    sha256 "5c910f1666f6e261369aa166bea2e48e5b03856928900448c2c577ec4f04eca2" => :el_capitan
+#    sha256 "8f0c1d019b71e76381c0f4437395f1e1eb3da24e8ef1b16051535209aeeaf5d7" => :yosemite
+#    sha256 "f4eae837311b7aadfff8a27720ce2bbc71871e9b095d31e90d4b833ec725205f" => :mavericks
+#  end
 
   depends_on "pkg-config" => :build
   depends_on "intltool" => :build
