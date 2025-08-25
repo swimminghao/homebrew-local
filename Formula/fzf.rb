@@ -1,26 +1,26 @@
 class Fzf < Formula
   desc "Command-line fuzzy finder written in Go"
   homepage "https://github.com/junegunn/fzf"
-  url "https://github.com/junegunn/fzf/archive/0.25.1.tar.gz"
-  sha256 "b97cf9ab528391a49dfa45b459c767fb2626ade9f3a3f99d0108d7274f2eca8b"
+  url "https://github.com/junegunn/fzf/archive/0.30.0.tar.gz"
+  sha256 "a3428f510b7136e39104a002f19b2e563090496cb5205fa2e4c5967d34a20124"
   license "MIT"
-  head "https://github.com/junegunn/fzf.git"
+  head "https://github.com/junegunn/fzf.git", branch: "master"
 
 #  bottle do
-#    cellar :any_skip_relocation
-#    rebuild 1
-#    sha256 "4785171206b293ad38415a377f49d6e7546c3918e6461fa7ef916881a4677d29" => :big_sur
-#    sha256 "3f55a17211677c905f56c9407892474f1da8c44bcd4192260abb05243cfd3a02" => :arm64_big_sur
-#    sha256 "888d72fea172e0901dd08364004510f8f842a61f0d5f9bcbc1e4bab92c41c768" => :catalina
-#    sha256 "dc35db24918171592e325cd911bf7a17424f404904b355164ddc2295cd5bd645" => :mojave
+#    sha256 cellar: :any_skip_relocation, arm64_monterey: "c776176e54740ed75d522099a7f20fd5ad9cc6043980ee42f513b8d776899b30"
+#    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "c776176e54740ed75d522099a7f20fd5ad9cc6043980ee42f513b8d776899b30"
+#    sha256 cellar: :any_skip_relocation, monterey:       "dadc361593396ced96c13d3695019a302d124e6cfe8ab6ffe65ba7877025a706"
+#    sha256 cellar: :any_skip_relocation, big_sur:        "dadc361593396ced96c13d3695019a302d124e6cfe8ab6ffe65ba7877025a706"
+#    sha256 cellar: :any_skip_relocation, catalina:       "dadc361593396ced96c13d3695019a302d124e6cfe8ab6ffe65ba7877025a706"
+#    sha256 cellar: :any_skip_relocation, x86_64_linux:   "528898433166413e8b928311b25b05b172775eef02d299f55c4fa5ab8282170e"
 #  end
 
-  depends_on "go" => :build
+  depends_on "go"
 
   uses_from_macos "ncurses"
 
   def install
-    system "go", "build", *std_go_args, "-ldflags", "-s -w -X main.version=#{version} -X main.revision=brew"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X main.version=#{version} -X main.revision=brew")
 
     prefix.install "install", "uninstall"
     (prefix/"shell").install %w[bash zsh fish].map { |s| "shell/key-bindings.#{s}" }
@@ -42,6 +42,6 @@ class Fzf < Formula
 
   test do
     (testpath/"list").write %w[hello world].join($INPUT_RECORD_SEPARATOR)
-    assert_equal "world", shell_output("cat #{testpath}/list | #{bin}/fzf -f wld").chomp
+    assert_equal "world", pipe_output("#{bin}/fzf -f wld", (testpath/"list").read).chomp
   end
 end
