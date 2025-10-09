@@ -14,7 +14,7 @@ class Ruby < Formula
 
   depends_on "pkg-config" => :build
   depends_on "libyaml"
-  depends_on "openssl@1.1"
+  #depends_on "openssl@1.1"
   depends_on "readline"
 
   uses_from_macos "zlib"
