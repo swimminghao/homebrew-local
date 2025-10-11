@@ -10,6 +10,13 @@ class GitGui < Formula
     formula "git"
   end
 
+
+
+
+
+
+
+
   depends_on "tcl-tk"
 
   # Patch to fix Homebrew/homebrew-core#68798.
