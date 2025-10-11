@@ -1,16 +1,14 @@
 class GitGui < Formula
   desc "Tcl/Tk UI for the git revision control system"
   homepage "https://git-scm.com"
-  url "https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.50.1.tar.xz"
-  sha256 "7e3e6c36decbd8f1eedd14d42db6674be03671c2204864befa2a41756c5c8fc4"
+  url "https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.49.0.tar.xz"
+  sha256 "618190cf590b7e9f6c11f91f23b1d267cd98c3ab33b850416d8758f8b5a85628"
   license "GPL-2.0-only"
   head "https://github.com/git/git.git", branch: "master"
 
   livecheck do
     formula "git"
   end
-
-  no_autobump! because: :requires_manual_review
 
 
   depends_on "tcl-tk@8"
