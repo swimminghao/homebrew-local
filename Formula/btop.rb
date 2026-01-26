@@ -8,7 +8,7 @@ class Btop < Formula
 
 
   depends_on "coreutils" => :build
-  depends_on "gcc"
+#  depends_on "gcc"
 
   fails_with :clang # -ftree-loop-vectorize -flto=12 -s
   # GCC 10 at least is required
