@@ -8,7 +8,7 @@ class Btop < Formula
 
   on_macos do
     depends_on "coreutils" => :build
-    depends_on "gcc" if DevelopmentTools.clang_build_version <= 1403
+    #depends_on "gcc" if DevelopmentTools.clang_build_version <= 1403
   end
 
   on_ventura do
