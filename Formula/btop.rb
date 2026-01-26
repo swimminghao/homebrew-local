@@ -9,7 +9,7 @@ class Btop < Formula
 
   on_macos do
     depends_on "coreutils" => :build
-    depends_on "gcc"
+#    depends_on "gcc"
   end
 
   fails_with :clang # -ftree-loop-vectorize -flto=12 -s
