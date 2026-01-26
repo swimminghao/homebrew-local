@@ -19,6 +19,7 @@ class Btop < Formula
   fails_with gcc: "9"
 
   def install
+    ENV["CXX"] = "#{Formula["gcc"].opt_bin}/g++-14"
     system "make", "CXX=#{ENV.cxx}", "STRIP=true"
     system "make", "PREFIX=#{prefix}", "install"
   end
