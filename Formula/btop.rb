@@ -35,7 +35,7 @@ class Btop < Formula
   end
 
   def install
-    system "make", "CXX=/usr/local/Cellar/gcc/14.1.0_1/bing/g++-14", "STRIP=true"
+    system "make", "CXX=/usr/local/Cellar/gcc/14.1.0_1/bin/g++-14", "STRIP=true"
     system "make", "PREFIX=#{prefix}", "install"
   end
 
