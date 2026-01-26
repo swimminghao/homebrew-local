@@ -7,7 +7,6 @@ class Btop < Formula
   head "https://github.com/aristocratos/btop.git", branch: "main"
 
   depends_on "coreutils" => :build
-  depends_on "gcc"
 
   fails_with :clang # -ftree-loop-vectorize -flto=12 -s
   # GCC 10 at least is required
