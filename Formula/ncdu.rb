@@ -1,8 +1,8 @@
 class Ncdu < Formula
   desc "NCurses Disk Usage"
   homepage "https://dev.yorhel.nl/ncdu"
-  url "https://dev.yorhel.nl/download/ncdu-2.2.2.tar.gz"
-  sha256 "90d920024e752318b469776ce57e03b3c702d49329ad9825aeeab36c3babf993"
+  url "https://dev.yorhel.nl/download/ncdu-2.2.1.tar.gz"
+  sha256 "5e4af8f6bcd8cf7ad8fd3d7900dab1320745a0453101e9e374f9a77f72aed141"
   license "MIT"
   head "https://g.blicky.net/ncdu.git", branch: "zig"
 
@@ -24,8 +24,6 @@ class Ncdu < Formula
   depends_on "zig" => :build
   # Without this, `ncdu` is unusable when `TERM=tmux-256color`.
   depends_on "ncurses"
-
-  patch :DATA
 
   def install
     # Fix illegal instruction errors when using bottles on older CPUs.
@@ -53,20 +51,3 @@ class Ncdu < Formula
     assert_equal Pathname.pwd.size, output[3][0]["asize"]
   end
 end
-
-__END__
-diff --git a/build.zig b/build.zig
-index 45bd314..aac1b54 100644
---- a/build.zig
-+++ b/build.zig
-@@ -10,6 +10,10 @@ pub fn build(b: *std.build.Builder) void {
-     const exe = b.addExecutable("ncdu", "src/main.zig");
-     exe.setTarget(target);
-     exe.setBuildMode(mode);
-+    if (exe.target.isDarwin()) {
-+        // useful for package maintainers
-+        exe.headerpad_max_install_names = true;
-+    }
-     exe.addCSourceFile("src/ncurses_refs.c", &[_][]const u8{});
-     exe.linkLibC();
-     exe.linkSystemLibrary("ncursesw");
