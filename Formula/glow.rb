@@ -17,7 +17,8 @@ class Glow < Formula
 #    sha256 cellar: :any_skip_relocation, x86_64_linux:   "a57317e524f7ca1af42f21c91b1e387faa9a0c7e33efae5193443be86dd38a83"
 #  end
 
-  depends_on "go" => :build
+#  depends_on "go@1.23.5" => :build
+
 
   def install
     system "go", "build", "-ldflags", "-s -w -X main.Version=#{version}", "-trimpath", "-o", bin/name
