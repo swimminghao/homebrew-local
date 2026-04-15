@@ -7,7 +7,8 @@ class Zig < Formula
   stable do
     url "https://ziglang.org/download/0.9.1/zig-0.9.1.tar.xz"
     sha256 "38cf4e84481f5facc766ba72783e7462e08d6d29a5d47e3b75c8ee3142485210"
-    depends_on "llvm@13" => :build
+#    depends_on "llvm@13" => :build
+    depends_on "llvm" => :build
   end
 
 #  bottle do
