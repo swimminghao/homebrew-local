@@ -18,10 +18,10 @@ class Graphviz < Formula
 #    sha256 x86_64_linux:   "2393110242bbc0f172499842f7132eb173d6cdb6eadc1d8930f9ad8d16cc63ae"
 #  end
 
-  depends_on "autoconf" => :build
-  depends_on "automake" => :build
-  depends_on "bison" => :build
-  depends_on "pkg-config" => :build
+#  depends_on "autoconf" => :build
+#  depends_on "automake" => :build
+#  depends_on "bison" => :build
+#  depends_on "pkg-config" => :build
   depends_on "gd"
   depends_on "gts"
   depends_on "libpng"
